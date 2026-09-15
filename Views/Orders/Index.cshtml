@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DEVTEST_Cameron_MVC.Models.Order>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-primary fw-bold">Orders</h2>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Add Order
+    </a>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-primary">
+                <tr>
+                    <th>Sales Order</th>
+                    <th>Order Date</th>
+                    <th>Customer</th>
+                    <th>Sales Person</th>
+                    <th class="text-end">Amount</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.SalesOrder</td>
+                        <td>@item.OrderDate.ToShortDateString()</td>
+                        <td>@item.Customer?.Name</td>
+                        <td>@item.Salesperson?.Name</td>
+                        <td class="text-end">R @item.Amount.ToString("N2")</td>
+                        <td class="text-center">
+                            <a asp-action="Details" asp-route-id="@item.SalesOrder" class="btn btn-sm btn-outline-primary">Details</a>
+                            <a asp-action="Edit" asp-route-id="@item.SalesOrder" class="btn btn-sm btn-outline-secondary">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.SalesOrder" class="btn btn-sm btn-outline-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

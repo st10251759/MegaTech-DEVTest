@@ -1,0 +1,38 @@
+﻿@model DEVTEST_Cameron_MVC.Models.Order
+
+@{
+    ViewData["Title"] = "Delete Order";
+}
+
+<h2 class="text-primary fw-bold mb-4">Delete Order</h2>
+
+<div class="card shadow-sm border-0" style="max-width: 500px;">
+    <div class="card-header bg-danger text-white">
+        Are you sure you want to delete this order?
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 text-muted">Sales Order</dt>
+            <dd class="col-sm-8">@Model.SalesOrder</dd>
+
+            <dt class="col-sm-4 text-muted">Order Date</dt>
+            <dd class="col-sm-8">@Model.OrderDate.ToShortDateString()</dd>
+
+            <dt class="col-sm-4 text-muted">Customer</dt>
+            <dd class="col-sm-8">@Model.Customer?.Name</dd>
+
+            <dt class="col-sm-4 text-muted">Sales Person</dt>
+            <dd class="col-sm-8">@Model.Salesperson?.Name</dd>
+
+            <dt class="col-sm-4 text-muted">Amount</dt>
+            <dd class="col-sm-8">R @Model.Amount.ToString("N2")</dd>
+        </dl>
+    </div>
+    <div class="card-footer bg-white border-top-0">
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="SalesOrder" />
+            <button type="submit" class="btn btn-danger btn-sm">Confirm Delete</button>
+            <a asp-action="Index" class="btn btn-outline-secondary btn-sm">Cancel</a>
+        </form>
+    </div>
+</div>

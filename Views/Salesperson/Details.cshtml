@@ -1,0 +1,59 @@
+﻿@model DEVTEST_Cameron_MVC.Models.Salesperson
+
+@{
+    ViewData["Title"] = "Salesperson Details";
+}
+
+<h2 class="text-primary fw-bold mb-4">Salesperson Details</h2>
+
+<div class="card shadow-sm border-0 mb-4" style="max-width: 500px;">
+    <div class="card-header bg-primary text-white">
+        @Model.Name
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 text-muted">Age</dt>
+            <dd class="col-sm-8">@Model.Age</dd>
+
+            <dt class="col-sm-4 text-muted">Salary</dt>
+            <dd class="col-sm-8">R @Model.Salary?.ToString("N2")</dd>
+        </dl>
+    </div>
+    <div class="card-footer bg-white border-top-0">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary btn-sm">Edit</a>
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">Back to List</a>
+    </div>
+</div>
+
+<h5 class="text-primary fw-semibold mb-3">Orders Handled by this Salesperson</h5>
+
+@if (Model.Orders != null && Model.Orders.Any())
+{
+    <div class="card shadow-sm border-0" style="max-width: 700px;">
+        <div class="card-body p-0">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Sales Order</th>
+                        <th>Order Date</th>
+                        <th class="text-end">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model.Orders)
+                    {
+                        <tr>
+                            <td>@order.SalesOrder</td>
+                            <td>@order.OrderDate.ToShortDateString()</td>
+                            <td class="text-end">R @order.Amount.ToString("N2")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <p class="text-muted">No orders found for this salesperson.</p>
+}

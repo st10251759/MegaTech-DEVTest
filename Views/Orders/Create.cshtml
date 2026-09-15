@@ -1,0 +1,58 @@
+﻿@model DEVTEST_Cameron_MVC.Models.Order
+
+@{
+    ViewData["Title"] = "Add Order";
+}
+
+<h2 class="text-primary fw-bold mb-4">Add Order</h2>
+
+<div class="card shadow-sm border-0" style="max-width: 550px;">
+    <div class="card-body">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="SalesOrder" class="form-label fw-semibold">Sales Order Number</label>
+                <input asp-for="SalesOrder" class="form-control" />
+                <span asp-validation-for="SalesOrder" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="OrderDate" class="form-label fw-semibold">Order Date</label>
+                <input asp-for="OrderDate" type="date" class="form-control" />
+                <span asp-validation-for="OrderDate" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="CustId" class="form-label fw-semibold">Customer</label>
+                <select asp-for="CustId" asp-items="ViewBag.CustId" class="form-select">
+                    <option value="">-- Select Customer --</option>
+                </select>
+                <span asp-validation-for="CustId" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="SalesPersonId" class="form-label fw-semibold">Sales Person</label>
+                <select asp-for="SalesPersonId" asp-items="ViewBag.SalesPersonId" class="form-select">
+                    <option value="">-- Select Sales Person --</option>
+                </select>
+                <span asp-validation-for="SalesPersonId" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Amount" class="form-label fw-semibold">Amount</label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger small"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save Order</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

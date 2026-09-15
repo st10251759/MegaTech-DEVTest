@@ -1,0 +1,32 @@
+﻿@model DEVTEST_Cameron_MVC.Models.Salesperson
+
+@{
+    ViewData["Title"] = "Delete Salesperson";
+}
+
+<h2 class="text-primary fw-bold mb-4">Delete Salesperson</h2>
+
+<div class="card shadow-sm border-0" style="max-width: 500px;">
+    <div class="card-header bg-danger text-white">
+        Are you sure you want to delete this salesperson?
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 text-muted">Name</dt>
+            <dd class="col-sm-8">@Model.Name</dd>
+
+            <dt class="col-sm-4 text-muted">Age</dt>
+            <dd class="col-sm-8">@Model.Age</dd>
+
+            <dt class="col-sm-4 text-muted">Salary</dt>
+            <dd class="col-sm-8">R @Model.Salary?.ToString("N2")</dd>
+        </dl>
+    </div>
+    <div class="card-footer bg-white border-top-0">
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger btn-sm">Confirm Delete</button>
+            <a asp-action="Index" class="btn btn-outline-secondary btn-sm">Cancel</a>
+        </form>
+    </div>
+</div>

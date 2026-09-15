@@ -1,0 +1,32 @@
+﻿@model DEVTEST_Cameron_MVC.Models.Order
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<h2 class="text-primary fw-bold mb-4">Order Details</h2>
+
+<div class="card shadow-sm border-0" style="max-width: 500px;">
+    <div class="card-header bg-primary text-white">
+        Sales Order #@Model.SalesOrder
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 text-muted">Order Date</dt>
+            <dd class="col-sm-8">@Model.OrderDate.ToShortDateString()</dd>
+
+            <dt class="col-sm-4 text-muted">Customer</dt>
+            <dd class="col-sm-8">@Model.Customer?.Name</dd>
+
+            <dt class="col-sm-4 text-muted">Sales Person</dt>
+            <dd class="col-sm-8">@Model.Salesperson?.Name</dd>
+
+            <dt class="col-sm-4 text-muted">Amount</dt>
+            <dd class="col-sm-8">R @Model.Amount.ToString("N2")</dd>
+        </dl>
+    </div>
+    <div class="card-footer bg-white border-top-0">
+        <a asp-action="Edit" asp-route-id="@Model.SalesOrder" class="btn btn-primary btn-sm">Edit</a>
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">Back to List</a>
+    </div>
+</div>
